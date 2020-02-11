@@ -8,10 +8,9 @@ public class Student
     private String lastName;
     private int age;
     private String phoneNumber;
-    private String faculty;
+    private Faculty faculty;
 
-
-    public Student(String firstName, String lastName, int age, String phoneNumber, String faculty) {
+    public Student(String firstName, String lastName, int age, String phoneNumber, Faculty faculty) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -51,11 +50,11 @@ public class Student
         this.phoneNumber = phoneNumber;
     }
 
-    public String getFaculty() {
+    public Faculty getFaculty() {
         return faculty;
     }
 
-    public void setFaculty(String faculty) {
+    public void setFaculty(Faculty faculty) {
         this.faculty = faculty;
     }
 

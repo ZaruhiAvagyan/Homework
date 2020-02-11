@@ -2,18 +2,18 @@ package com.Maps;
 
 public enum Months
 {
-    JANUARY(31,  new int[]{1, 6, 28}),
-    FEBRUARY(28,  new int[]{14}),
-    MARCH(31,  new int[]{8}),
-    APRIL(30,  new int[]{1, 7}),
-    MAY(30,  new int[]{1,9,28}),
-    JUNE(30,new int[]{1}),
-    JULY(31, new int[]{21}),
-    AUGUST(31,  new int[]{}),
-    SEPTEMBER(30,  new int[]{1}),
-    OCTOBER(31,  new int[]{}),
-    NOVEMBER(30, new int[]{}),
-    DECEMBER(31,  new int[]{31});
+    JANUARY(31, 1, 6, 28),
+    FEBRUARY(28, 14),
+    MARCH(31,  8),
+    APRIL(30, 1, 7),
+    MAY(30, 1,9,28),
+    JUNE(30,1),
+    JULY(31, 21),
+    AUGUST(31),
+    SEPTEMBER(30, 1),
+    OCTOBER(31),
+    NOVEMBER(30),
+    DECEMBER(31, 31);
 
     private int numberOfDaysInMonth;
     private int[] publicHolidays;

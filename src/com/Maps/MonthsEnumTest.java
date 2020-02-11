@@ -1,6 +1,6 @@
 package com.Maps;
 
-public class MonthEnumTest
+public class MonthsEnumTest
 {
     public static void main(String[] args) {
         Months.holidaysInMonth(Months.APRIL);
