@@ -29,19 +29,15 @@ public class MapOfStudents
     public static HashMap<Student, Integer> createMap(ArrayList<Student> students)
     {
         HashMap<Student, Integer> studentsMap = new HashMap<>();
-        Iterator<Student> iterator  = students.iterator();
-        int count = 1;
-        while(iterator.hasNext())
-        {
-            Student student = iterator.next();
-            if(!studentsMap.containsKey(student)) {
-                studentsMap.put(student, 1);
-            }
-            else{
-                studentsMap.put(student, studentsMap.get(student)+1 );
-            }
-        }
-        return studentsMap;
+       for(Student student : students)
+       {
+           if(!studentsMap.containsKey(student)) {
+               studentsMap.put(student, 1);
+           }else{
+               studentsMap.put(student, studentsMap.get(student)+1 );
+           }
+       }
+       return studentsMap;
     }
 
     private static void displayMap(Map <Student, Integer> map)

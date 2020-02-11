@@ -13,10 +13,8 @@ public class MapOfFaculties
     public static HashMap<Faculty, Integer> getFacultyCount(ArrayList<Student> students)
     {
         HashMap<Faculty, Integer> studentsCountInFaculty = new HashMap<>();
-        Iterator<Student> iterator = students.iterator();
-        while(iterator.hasNext())
+        for (Student student : students)
         {
-            Student student = iterator.next();
             Faculty faculty = student.getFaculty();
             if(!studentsCountInFaculty.containsKey(faculty)){
                 studentsCountInFaculty.put(faculty, 1);
