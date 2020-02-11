@@ -1,10 +1,10 @@
+package com.CollectionsImpl;
 
 public class ComparableStudent implements Comparable<ComparableStudent>{
 
     private String firstName;
     private String lastName;
     private int age;
-
 
     public ComparableStudent(String firstName, String lastName, int age) {
         super();
@@ -39,10 +39,10 @@ public class ComparableStudent implements Comparable<ComparableStudent>{
 
     @Override
     public int compareTo(ComparableStudent o) {
-        String compared_lastName = o.getLastName();
-        if(this.getLastName().compareTo(compared_lastName) > 0) {
+        String tempLastName = o.getLastName();
+        if(this.getLastName().compareTo(tempLastName) > 0) {
             return 1;
-        } else if (this.getLastName().compareTo(compared_lastName) < 0) {
+        } else if (this.getLastName().compareTo(tempLastName) < 0) {
             return -1;
         } else
             return 0;
