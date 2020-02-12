@@ -1,67 +1,67 @@
 package com.SetImplementation;
 
-public class BinarySearchTree {
-    class Node {
-        Object data;
-        Node left;
-        Node right;
+public class BinarySearchTree<T extends Comparable<T>> {
+    class Node<T> {
+        T data;
+        Node<T> left;
+        Node<T> right;
 
         public Node() {
             this(null, null, null);
         }
 
-        public Node(Comparable data) {
+        public Node(T data) {
             this(data, null, null);
         }
 
-        public Node(Comparable data, Node left, Node right) {
+        public Node(T data, Node<T> left, Node<T> right) {
             this.data = data;
             this.left = left;
             this.right = right;
         }
 
-        public Comparable getData() {
-            return (Comparable) data;
+        public T getData() {
+            return data;
         }
 
-        public void setData(Object data) {
+        public void setData(T data) {
             this.data = data;
         }
 
-        public Node getLeft() {
+        public Node<T> getLeft() {
             return left;
         }
 
-        public void setLeft(Node left) {
+        public void setLeft(Node<T> left) {
             this.left = left;
         }
 
-        public Node getRight() {
+        public Node<T> getRight() {
             return right;
         }
 
-        public void setRight(Node right) {
+        public void setRight(Node<T> right) {
             this.right = right;
         }
     }
 
 
-    private static Node rootOfBST;
+    private Node<T> rootOfBST;
 
     public BinarySearchTree() {
         rootOfBST = null;
     }
 
-    public static Node getRootOfBST() {
+    public Node<T> getRootOfBST() {
         return rootOfBST;
     }
 
-    public static void setRootOfBST(Node rootOfBST) {
-        BinarySearchTree.rootOfBST = rootOfBST;
+    public void setRootOfBST(Node<T> rootOfBST) {
+        this.rootOfBST = rootOfBST;
     }
 
 
-    private Node insertNode(Node root, Comparable data) {
+    private Node<T> insertNode(Node<T> root, T data) {
         if (root == null) {
             root = new Node(data);
             return root;
@@ -74,12 +74,12 @@ public class BinarySearchTree {
         return root;
     }
 
-    public void add(Comparable data) {
+    public void add(T data) {
         rootOfBST = insertNode(rootOfBST, data);
     }
 
 
-    private Node containsData(Node root, Comparable data) {
+    private Node<T> containsData(Node<T> root, T data) {
         if (root == null || data.compareTo(root.getData())==0)
             return root;
         if (data.compareTo(root.getData()) < 0)
@@ -88,12 +88,12 @@ public class BinarySearchTree {
             return containsData(root.getRight(), data);
     }
 
-    public void contains(Comparable data) {
+    public void contains(T data) {
         System.out.println((containsData(rootOfBST, data) == null ? "Set does not contain " + data.toString() : "Set contains " + data.toString()));
     }
 
 
-    private static void inorderTraversalHelper(Node root) {
+    private void inorderTraversalHelper(Node<T> root) {
         if (root != null) {
             inorderTraversalHelper(root.getLeft());
             System.out.printf("%s\n", root.getData().toString());
@@ -106,7 +106,7 @@ public class BinarySearchTree {
     }
 
 
-    private Node deleteNode(Node root, Comparable data) {
+    private Node<T> deleteNode(Node<T> root, T data) {
         if (root == null)
             return root;
 
@@ -127,20 +127,20 @@ public class BinarySearchTree {
         return root;
     }
 
-    private Comparable findMinInRightSubtree(Node root) {
-        Comparable min = root.getData();
+    private T findMinInRightSubtree(Node<T> root) {
+        T min = root.getData();
         while (root.getLeft() != null) {
             min = root.getLeft().getData();
-            root.setData(root.getLeft());
+            root.setData((T) root.getLeft());
         }
         return min;
     }
 
-    public void remove(Comparable data) {
+    public void remove(T data) {
         rootOfBST = deleteNode(rootOfBST, data);
     }
 
-    public int getSize(Node root) {
+    public int getSize(Node<T> root) {
         if(root==null)
             return 0;
         return 1 + getSize(root.getLeft()) + getSize(root.getRight());

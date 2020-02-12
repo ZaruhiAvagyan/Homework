@@ -1,5 +1,7 @@
 package com.SetImplementation;
 
+import com.Maps.Student;
+
 public class BinarySearchTreeTest {
 
     public static void main(String[] args) {
@@ -19,7 +21,7 @@ public class BinarySearchTreeTest {
         StudentComparable s4 = new StudentComparable("A", "B", 17);
         StudentComparable s5 = new StudentComparable("E", "C", 14);
 
-        BinarySearchTree studentsSet = new BinarySearchTree();
+        BinarySearchTree<StudentComparable> studentsSet = new BinarySearchTree<StudentComparable>();
 
         studentsSet.add(s1);
         studentsSet.add(s2);
@@ -31,7 +33,7 @@ public class BinarySearchTreeTest {
         studentsSet.remove(s3);
         studentsSet.inorderTraversal();
 
-        BinarySearchTree.Node rootTest = BinarySearchTree.getRootOfBST();
+        BinarySearchTree.Node rootTest = studentsSet.getRootOfBST();
         System.out.printf("The number of elements is %d\n", studentsSet.getSize(rootTest));
         studentsSet.contains(new StudentComparable("A", "K", 7));
         studentsSet.contains(new StudentComparable("E", "C", 14));
@@ -54,7 +56,7 @@ public class BinarySearchTreeTest {
         coffeeSet.remove(c3);
         coffeeSet.inorderTraversal();
 
-        BinarySearchTree.Node rootTest = BinarySearchTree.getRootOfBST();
+        BinarySearchTree.Node rootTest = coffeeSet.getRootOfBST();
         System.out.printf("The number of elements is %d\n", coffeeSet.getSize(rootTest));
         coffeeSet.contains(new CoffeeComparable(3));
         coffeeSet.contains(new CoffeeComparable(4));
@@ -71,7 +73,7 @@ public class BinarySearchTreeTest {
         glassesSet.remove(new GlassesComparable(160.55));
         glassesSet.inorderTraversal();
 
-        BinarySearchTree.Node rootTest = BinarySearchTree.getRootOfBST();
+        BinarySearchTree.Node rootTest = glassesSet.getRootOfBST();
         System.out.printf("The number of elements is %d\n", glassesSet.getSize(rootTest));
         glassesSet.contains(new GlassesComparable(50.21));
         glassesSet.contains(new GlassesComparable(28.90));
