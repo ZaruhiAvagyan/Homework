@@ -1,6 +1,4 @@
-import java.text.CollationElementIterator;
-import java.util.Collection;
-import java.util.Collections;
+package com.collection;
 
 public class Student
 {

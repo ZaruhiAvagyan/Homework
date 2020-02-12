@@ -1,4 +1,4 @@
-package com.Maps;
+package com.maps;
 
 public enum Faculty {
 

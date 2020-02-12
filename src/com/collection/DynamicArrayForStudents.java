@@ -1,3 +1,4 @@
+package com.collection;
 
 public class DynamicArrayForStudents
 {
@@ -50,25 +51,22 @@ public class DynamicArrayForStudents
 
     public void add(Student s)
     {
-        if(size >= capacity * 0.75)
-        {
+        if(size >= capacity * 0.75){
             Student[] newStudents = new Student[ 2 * capacity ];
             setCapacity( 2 * capacity);
             copyArray(students, newStudents);
             newStudents[size]=s;
             size++;
         }
-        else
-        {
+        else{
             students[size] = s;
             size ++;
         }
     }
 
-
     public void remove(Student s)
     {
-        Student removableStudent=null;
+        Student removableStudent = null;
         for (int i = 0; i < students.length; i++) {
             if(students[i].getFirstName().compareTo(s.getFirstName())==0 && students[i].getLastName().compareTo(s.getLastName())==0 &&
                     students[i].getAge()==s.getAge()) {
@@ -76,14 +74,12 @@ public class DynamicArrayForStudents
                 students[i]=null;
                 for (int j = i; j <students.length; j++) {
                     students[j-1]=students[j];
-
                 }
                 size--;
                 break;
             }
-
         }
-        if(removableStudent==null)
+        if(removableStudent == null)
             System.out.println("such student is not found in dynamic array");
     }
 
@@ -113,8 +109,4 @@ public class DynamicArrayForStudents
         else
             return null;
     }
-
-
-
-
 }
