@@ -7,6 +7,7 @@ public class ArrayListOfStudents
 {
     public static void main(String[] args) {
         ArrayList<Student> students = initStudents();
+        System.out.println("Initial arraylist of students is ");
         print(students);
 
         System.out.println("After using Comparator for sorting by firstName in ascending order and by age in descending order");

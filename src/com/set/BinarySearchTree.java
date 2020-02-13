@@ -1,4 +1,4 @@
-package com.SetImplementation;
+package com.set;
 
 public class BinarySearchTree<T extends Comparable<T>> {
     class Node<T> {

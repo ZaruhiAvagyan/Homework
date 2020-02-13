@@ -1,4 +1,4 @@
-package com.SetImplementation;
+package com.set;
 
 public class StudentComparable implements Comparable<StudentComparable> {
 

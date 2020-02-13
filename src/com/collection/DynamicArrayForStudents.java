@@ -2,15 +2,15 @@ package com.collection;
 
 public class DynamicArrayForStudents
 {
-    private Student[] students;
+    private ComparableStudent[] students;
     private int size;
     private int capacity;
 
-    public Student[] getStudents() {
+    public ComparableStudent[] getStudents() {
         return students;
     }
 
-    public void setStudents(Student[] students) {
+    public void setStudents(ComparableStudent[] students) {
         this.students = students;
     }
 
@@ -33,14 +33,14 @@ public class DynamicArrayForStudents
     public DynamicArrayForStudents()
     {
         setCapacity(10);      //let's assume default capacity = 10
-        students = new Student[capacity];
+        students = new ComparableStudent[capacity];
         setSize(0);
     }
 
     public DynamicArrayForStudents(int capacity)
     {
         setCapacity(capacity);
-        students = new Student[capacity]; //creates dynamic array with specified capacity
+        students = new ComparableStudent[capacity]; //creates dynamic array with specified capacity
         setSize(0);
     }
 
@@ -49,41 +49,43 @@ public class DynamicArrayForStudents
         return getSize();
     }
 
-    public void add(Student s)
+    public void add(ComparableStudent s)
     {
-        if(size >= capacity * 0.75){
-            Student[] newStudents = new Student[ 2 * capacity ];
-            setCapacity( 2 * capacity);
+        if(getSize() == getCapacity()){
+            ComparableStudent[] newStudents = new ComparableStudent[ 2 * getCapacity() ];
+            setCapacity( 2 * getCapacity());
             copyArray(students, newStudents);
+            students = newStudents;
             newStudents[size]=s;
-            size++;
+            setSize(size + 1);
         }
-        else{
+        else if(getSize() < getCapacity()){
             students[size] = s;
-            size ++;
+            setSize(size + 1);
         }
     }
 
-    public void remove(Student s)
+    public void remove(ComparableStudent s)
     {
-        Student removableStudent = null;
-        for (int i = 0; i < students.length; i++) {
-            if(students[i].getFirstName().compareTo(s.getFirstName())==0 && students[i].getLastName().compareTo(s.getLastName())==0 &&
-                    students[i].getAge()==s.getAge()) {
+        ComparableStudent removableStudent = null;
+        for (int i = 0; i < getSize(); i++) {
+            if(students[i].equals(s)) {
                 removableStudent = students[i];
                 students[i]=null;
-                for (int j = i; j <students.length; j++) {
+                for (int j = i + 1; j < getSize(); j++) {
                     students[j-1]=students[j];
                 }
                 size--;
-                break;
+                System.out.println("Student is removed.");
             }
+            if(removableStudent != null)
+                break;
         }
         if(removableStudent == null)
             System.out.println("such student is not found in dynamic array");
     }
 
-    private static  void copyArray (Student[] oldArray, Student[] newArray)
+    private static  void copyArray (ComparableStudent[] oldArray, ComparableStudent[] newArray)
     {
         if(newArray.length >= oldArray.length) {
             for (int i = 0; i < oldArray.length; i++) {
@@ -94,19 +96,24 @@ public class DynamicArrayForStudents
 
     public static void print(DynamicArrayForStudents students)
     {
-       Student[] studentsNew = students.getStudents();
-
-        for (Student s: studentsNew) {
-            System.out.printf("Name: %10s %12s   Age: %2d\n", s.getFirstName(), s.getLastName(), s.getAge());
+        System.out.println();
+        if(students.getSize() != 0) {
+            ComparableStudent[] studentsNew = students.getStudents();
+            for (int i = 0; i < students.getSize(); i++) {
+                System.out.println(studentsNew[i].toString());
+            }
         }
+        System.out.println();
     }
 
-    public Student get(int index)
+    public ComparableStudent get(int index) throws ArrayIndexOutOfBoundsException
     {
-        Student[] arrayOfStudents = students;
-        if(arrayOfStudents[index]!=null)
+        ComparableStudent[] arrayOfStudents = students;
+        if(arrayOfStudents[index]!=null) {
+            System.out.printf("The student name at index %d is %s\n", index, arrayOfStudents[index].getFirstName());
             return arrayOfStudents[index];
+        }
         else
-            return null;
+            throw new ArrayIndexOutOfBoundsException("The index is not acceptable.");
     }
 }
