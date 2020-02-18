@@ -1,5 +1,7 @@
 package com.collection;
 
+import java.util.Objects;
+
 public class ComparableStudent implements Comparable<ComparableStudent>{
 
     private String firstName;
@@ -46,6 +48,26 @@ public class ComparableStudent implements Comparable<ComparableStudent>{
             return -1;
         } else
             return 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ComparableStudent that = (ComparableStudent) o;
+        return age == that.age &&
+                Objects.equals(firstName, that.firstName) &&
+                Objects.equals(lastName, that.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, age);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s", getFirstName(), getLastName());
     }
 }
 
