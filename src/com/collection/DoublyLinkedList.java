@@ -2,7 +2,7 @@ package com.collection;
 
 public class DoublyLinkedList {
 
-    Node head;
+    private Node head;
     public Node getHead() { return head; }
     public void setHead(Node head) { this.head = head; }
 
@@ -31,20 +31,25 @@ public class DoublyLinkedList {
     }
 
     //inserts at the front
-    public void push(ComparableStudent student){
-
-        Node first = new Node(student);
-        first.setNext(getHead());
-        first.setPrevious(null);
-        if(getHead() != null)
-            getHead().setPrevious(first);
-        setHead(first);
+    public void push(ComparableStudent student) throws IllegalArgumentException {
+        if(student == null) {
+            throw new IllegalArgumentException("Argument cannot be null");
+        }else {
+            Node first = new Node(student);
+            first.setNext(getHead());
+            first.setPrevious(null);
+            if (getHead() != null) {
+                getHead().setPrevious(first);
+            }
+            setHead(first);
+        }
     }
 
     //remove from front and return
     public ComparableStudent pop(){
-        if(getHead() == null)
+        if(getHead() == null) {
             return null;
+        }
         else if(getHead().getNext() == null) {
             Node temp = getHead();
             setHead(null);
@@ -59,7 +64,10 @@ public class DoublyLinkedList {
         }
     }
 
-    public void addLast(ComparableStudent student){
+    public void addLast(ComparableStudent student) throws IllegalArgumentException{
+        if(student == null){
+            throw new IllegalArgumentException("Argument cannot be null");
+        }
         if(getHead() == null){
             Node onlyNode = new Node(student);
             setHead(onlyNode);
@@ -80,8 +88,9 @@ public class DoublyLinkedList {
     //removes and returns the last
     public ComparableStudent removeLast(){
         Node temp = getHead();
-        if(temp == null)
+        if(temp == null) {
             return null;
+        }
         else if(temp.getNext() == null) {
             setHead(null);
             return temp.getData();

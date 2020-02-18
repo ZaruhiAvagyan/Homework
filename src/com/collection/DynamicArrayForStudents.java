@@ -5,6 +5,7 @@ public class DynamicArrayForStudents
     private ComparableStudent[] students;
     private int size;
     private int capacity;
+    private static final int DEFAULT_CAPACITY = 10;
 
     public ComparableStudent[] getStudents() {
         return students;
@@ -32,7 +33,7 @@ public class DynamicArrayForStudents
 
     public DynamicArrayForStudents()
     {
-        setCapacity(10);      //let's assume default capacity = 10
+        setCapacity(DEFAULT_CAPACITY);
         students = new ComparableStudent[capacity];
         setSize(0);
     }
@@ -49,9 +50,12 @@ public class DynamicArrayForStudents
         return getSize();
     }
 
-    public void add(ComparableStudent s)
+    public void add(ComparableStudent s) throws IllegalArgumentException
     {
-        if(getSize() == getCapacity()){
+        if(s == null){
+            throw new IllegalArgumentException("Argument should not be null");
+        }
+        else if(getSize() == getCapacity()){
             ComparableStudent[] newStudents = new ComparableStudent[ 2 * getCapacity() ];
             setCapacity( 2 * getCapacity());
             copyArray(students, newStudents);
@@ -65,8 +69,11 @@ public class DynamicArrayForStudents
         }
     }
 
-    public void remove(ComparableStudent s)
+    public void remove(ComparableStudent s) throws IllegalArgumentException
     {
+        if(s == null){
+            throw new IllegalArgumentException("Argument should not be null");
+        }
         ComparableStudent removableStudent = null;
         for (int i = 0; i < getSize(); i++) {
             if(students[i].equals(s)) {
@@ -78,11 +85,13 @@ public class DynamicArrayForStudents
                 size--;
                 System.out.println("Student is removed.");
             }
-            if(removableStudent != null)
+            if(removableStudent != null) {
                 break;
+            }
         }
-        if(removableStudent == null)
+        if(removableStudent == null) {
             System.out.println("such student is not found in dynamic array");
+        }
     }
 
     private static  void copyArray (ComparableStudent[] oldArray, ComparableStudent[] newArray)
@@ -102,18 +111,20 @@ public class DynamicArrayForStudents
             for (int i = 0; i < students.getSize(); i++) {
                 System.out.println(studentsNew[i].toString());
             }
+        }else{
+            System.out.println("Array is empty");
         }
         System.out.println();
     }
 
-    public ComparableStudent get(int index) throws ArrayIndexOutOfBoundsException
+    public ComparableStudent get(int index) throws IllegalArgumentException
     {
         ComparableStudent[] arrayOfStudents = students;
-        if(arrayOfStudents[index]!=null) {
+        if(index >= arrayOfStudents.length){
+            throw new IllegalArgumentException("The index is out of range.");
+        }else {
             System.out.printf("The student name at index %d is %s\n", index, arrayOfStudents[index].getFirstName());
             return arrayOfStudents[index];
         }
-        else
-            throw new ArrayIndexOutOfBoundsException("The index is not acceptable.");
     }
 }
